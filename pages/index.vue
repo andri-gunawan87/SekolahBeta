@@ -1,6 +1,8 @@
 <template>
   <div class="py-4">
-    <div class="container">
+    <div v-if="isLoading"><p>Loading</p>
+    </div>
+    <div class="container" v-else>
       <div
         class="
           title
@@ -122,6 +124,7 @@ export default {
   components: {
     CardItem,
   },
+  
   data() {
     return {
       searchQuery: "",
@@ -169,8 +172,35 @@ export default {
       isGrid: false,
       ss: false,
       itemId: 5,
+      isLoading: true,
     };
+    
   },
+  beforeCreate() {
+      console.log("before created");
+      // console.log(document.getElementById("life"));
+    },
+    created() {
+      console.log("created");
+      // console.log(document.getElementById("life"));
+    },
+    beforeMount() {
+      console.log("beforeMount");
+      // console.log(document.getElementById("life"));
+    },
+    mounted() {
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 3000);
+    },
+    beforeUpdate() {
+      console.log("beforeUpdate");
+      // console.log(document.getElementById("life").textContent);
+    },
+    updated() {
+      console.log("Updated");
+      // console.log(document.getElementById("life").textContent);
+    },
   methods: {
     doSomething() {
       alert("`Nothing to see here~");
@@ -218,30 +248,7 @@ export default {
         return this.tasks;
       }
     },
-    beforeCreate() {
-      console.log("before created");
-      // console.log(document.getElementById("life"));
-    },
-    created() {
-      console.log("created");
-      // console.log(document.getElementById("life"));
-    },
-    beforeMount() {
-      console.log("beforeMount");
-      // console.log(document.getElementById("life"));
-    },
-    mounted() {
-      console.log("mounted");
-      // console.log(document.getElementById("life"));
-    },
-    beforeUpdate() {
-      console.log("beforeUpdate");
-      console.log(document.getElementById("life").textContent);
-    },
-    updated() {
-      console.log("Updated");
-      console.log(document.getElementById("life").textContent);
-    },
+    
   },
 };
 </script>
